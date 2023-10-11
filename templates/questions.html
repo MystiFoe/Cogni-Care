@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Questions</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Quiz Questions</h2>
+        <form method="POST" action="/submit_answers">
+            <div class="form-group">
+                <label for="student_name">Student Name:</label>
+                <input type="text" class="form-control" id="student_name" name="student_name" required>
+            </div>
+            {% for category in categories %}
+                <h3>{{ category.name }}</h3>
+                <div class="card">
+                    <div class="card-body">
+                        {% for question in category.questions %}
+                            <div class="form-group">
+                                <label>{{ question.question }}</label><br>
+                                {% for option in question.options %}
+                                    <input type="radio" name="{{ question.question }}" value="{{ option }}"> {{ option }}<br>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn btn-primary mt-3">Submit Answers</button>
+        </form>
+    </div>
+</body>
+</html>

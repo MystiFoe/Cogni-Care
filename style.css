@@ -1,0 +1,141 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -o-box-sizing: border-box;
+}
+ 
+.wrapper {
+    max-width: 100%;
+    width: 800px;
+    margin: 0 auto;
+}
+ 
+body {
+    padding-top: 20px;
+    background: url("https://ulxl.files.wordpress.com/2020/10/bg.png") top left;
+    background-size: cover;
+    color: #fff;
+    font-family: 'Lato', sans-serif;
+}
+ 
+h1 {
+    text-align: center;
+    font-size: 50px;
+        text-shadow: 0 1px 0px #000, 1px 0 0px #000, 1px 2px 1px #000, 2px 1px 1px #000, 2px 3px 2px #000, 3px 2px 2px #000, 3px 4px 2px #000, 4px 3px 3px #000, 4px 5px 3px #000, 5px 4px 2px #000, 5px 6px 2px #000, 6px 5px 2px #000, 6px 7px 1px #000, 7px 6px 1px #000, 7px 8px 0px #000, 8px 7px 0px #000;
+}
+ 
+.wrapper > p {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+ 
+.gamebody {
+    margin: 0 auto;
+}
+ 
+.answers {
+    background-image: linear-gradient(315deg, #3facfa 0%, #21fe65 74%);
+    box-shadow: 0px 5px 0px 0px #000;
+    border: 3px solid #000;
+}
+ 
+.answers:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+ 
+.answers > div {
+    width: 50%;
+    float: left;
+    font-size: 60px;
+    text-align: center;
+    padding: 20px;
+    cursor: pointer;
+    min-height: 116px;
+    text-shadow: 0 1px 0px #000, 1px 0 0px #000, 1px 2px 1px #000, 2px 1px 1px #000;
+}
+ 
+button {
+    width: 200px;
+    border: none;
+    background-image: linear-gradient(315deg, #3facfa 0%, #29d297 74%);
+    box-shadow: 0px 5px 0px 0px #000000;
+    outline: none;
+    border-radius: 30px;
+    padding: 10px 15px;
+    font-size: 22px;
+    margin: 0 auto;
+    text-decoration: none;
+    margin-bottom: 40px;
+    color: #fff;
+    position: relative;
+    display: block;
+    cursor: pointer;
+}
+ 
+button:active {
+    transform: translate(0px, 5px);
+    -webkit-transform: translate(0px, 5px);
+    box-shadow: 0px 1px 0px 0px;
+}
+ 
+.problem {
+    border-radius: 30px;
+    text-align: center;
+    padding: 40px;
+    font-size: 100px;
+    border: 3px solid #000;
+    margin-bottom: 30px;
+    min-height: 203px;
+    background-color: rgba(220, 220, 220, 0.54);
+    text-shadow: 0 1px 0px #000, 1px 0 0px #000, 1px 2px 1px #000, 2px 1px 1px #000, 2px 3px 2px #000, 3px 2px 2px #000, 3px 4px 2px #000, 4px 3px 3px #000, 4px 5px 3px #000, 5px 4px 2px #000, 5px 6px 2px #000, 6px 5px 2px #000, 6px 7px 1px #000, 7px 6px 1px #000, 7px 8px 0px #000, 8px 7px 0px #000;
+}
+ 
+.one {
+    border-bottom: 3px solid #000;
+    border-right: 3px solid #000;
+    background-color: #3498db6e;
+}
+ 
+.two {
+    border-bottom: 3px solid #000;
+    background-color: #3498db6e;
+}
+ 
+.three {
+    border-right: 3px solid #000;
+    background-color: #3498db6e;
+}
+ 
+.four {
+    background-color: #3498db6e;
+ }
+ 
+.time {
+    position: relative;
+    z-index: 5;
+    height: 20px;
+    border: 1px solid #B1B1B1;
+    margin-bottom: 30px;
+    overflow: hidden;
+    background-color: rgba(155, 155, 155, 0.57);
+}
+ 
+.remaining {
+    /* background: #2ecc71;  For browsers that do not support gradients 
+    background: -webkit-linear-gradient(-90deg, #2ecc71, #e74c3c); For Safari 5.1 to 6.0 
+    background: -o-linear-gradient(-90deg, #2ecc71, #e74c3c);  For Opera 11.1 to 12.0 
+    background: -moz-linear-gradient(-90deg, #2ecc71, #e74c3c); For Firefox 3.6 to 15 
+ */
+    background: linear-gradient(-90deg, #00ff6c, #448117); /* Standard syntax */
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: none;
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Memory Game</title>
+</head>
+<body>
+    <div class="memory-cards">
+        {% for index in range(len(game_data) %}
+            <div class="card" id="{{ index }}">{{ game_data[index] }}</div>
+        {% endfor %}
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            let firstCard = null;
+            let secondCard = null;
+
+            $(".card").click(function() {
+                if (firstCard === null) {
+                    firstCard = $(this).attr("id");
+                    $(this).text(game_data[firstCard]);
+                } else if (secondCard === null) {
+                    secondCard = $(this).attr("id");
+                    $(this).text(game_data[secondCard]);
+
+                    $.post("/card_clicked", JSON.stringify({"card_index": secondCard}), function(response) {
+                        if (response.result === "success") {
+                            if (response.game_end) {
+                                alert("Game Over");
+                            }
+                        }
+                    });
+
+                    firstCard = null;
+                    secondCard = null;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

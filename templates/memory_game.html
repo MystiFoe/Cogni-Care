@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Game</title>
+</head>
+<body>
+    <h1>Memory Game</h1>
+    
+    <!-- Embed the Tkinter window using tkinterhtml -->
+    <div id="memory-game-container"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/tkinterhtml@1.0.0/tkinterhtml.min.js"></script>
+
+    <script>
+        // Create a new Tkinter HTML instance
+        const tkinterHTML = new TkinterHTML();
+
+        // Specify the ID of the container element where the Tkinter window will be embedded
+        const containerId = 'memory-game-container';
+
+        // Define the URL of the Python script that runs the Tkinter memory game
+        const pythonScriptUrl = 'http://localhost:8000/memory_game.py';
+
+        // Embed the Tkinter window into the specified container
+        tkinterHTML.embed(containerId, pythonScriptUrl);
+    </script>
+</body>
+</html>

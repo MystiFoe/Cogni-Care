@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mind Challenge Challenge</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Mind Challenge Challenge</h1>
+    <h2>Decision-Making Round</h2>
+    <button id="drawCardButton">Draw a Card</button>
+    <div id="cardDisplay"></div>
+
+    <h2>Logical Thinking Round</h2>
+    <p>Arrange the cards in ascending order by suit:</p>
+    <div id="logicalSequence"></div>
+
+    <h2>Remembrance Round</h2>
+    <p>Remember the details of the cards:</p>
+    <input type="text" id="rememberedDetails" placeholder="Enter details here">
+
+    <h2>Reasoning Round</h2>
+    <p>Solve this problem:</p>
+    <p>Problem: <span id="reasoningProblem"></span></p>
+    <input type="text" id="reasoningSolution" placeholder="Enter your solution here">
+
+    <button id="submitButton">Submit</button>
+    <div id="result"></div>
+
+    <script>
+        var currentCard = null;
+        var logicalSequence = [];
+        var rememberedDetails = '';
+        var reasoningProblem = '';
+        var roundName = ''; // Variable to store the round name
+
+        function drawCard() {
+            $.get('/draw_card', function(data) {
+                currentCard = data;
+                $('#cardDisplay').text(data.suit + ' - ' + data.value);
+            });
+        }
+
+        function checkLogicalSequence() {
+            $.post('/logical_sequence', { user_sequence: logicalSequence }, function(data) {
+                $('#result').text(data.message);
+                submitRoundScore(roundName, data.message === 'Correct!' ? 1 : 0);
+            });
+        }
+
+        function submitDetails() {
+            rememberedDetails = $('#rememberedDetails').val();
+            $.post('/remember_details', { details: rememberedDetails }, function(data) {
+                $('#result').text(data.message);
+                submitRoundScore(roundName, data.message === 'Details remembered!' ? 1 : 0);
+            });
+        }
+
+        function submitReasoningSolution() {
+            reasoningProblem = $('#reasoningProblem').text();
+            var solution = $('#reasoningSolution').val();
+            $.post('/reasoning_problem', { solution: solution }, function(data) {
+                $('#result').text(data.message);
+                submitRoundScore(roundName, data.message === 'Problem solved!' ? 1 : 0);
+            });
+        }
+
+        // Function to submit round score to the server
+        function submitRoundScore(roundName, roundScore) {
+            var studentName = prompt('Enter your name:'); // Prompt for student's name
+            if (studentName) {
+                $.post('/store_round_score', {
+                    student_name: studentName,
+                    round_name: roundName,
+                    round_score: roundScore,
+                }, function(data) {
+                    alert(data.message);
+                });
+            }
+        }
+
+        $('#drawCardButton').click(drawCard);
+        $('#logicalSequence').text(JSON.stringify(logicalSequence));
+        $('#rememberedDetails').val(rememberedDetails);
+        $('#reasoningProblem').text(reasoningProblem);
+        $('#submitButton').click(checkLogicalSequence);
+        $('#submitButton').click(submitDetails);
+        $('#submitButton').click(submitReasoningSolution);
+
+        // Prompt for round name
+        roundName = prompt('Enter the round name:');
+    </script>
+</body>
+</html>
